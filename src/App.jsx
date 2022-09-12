@@ -6,8 +6,8 @@ import Swal from "sweetalert2";
 
 const alert = () => {
   Swal.fire({
-    title: "El Correo ha sido enviado exitosamente!",
-    text: "Se le contactara atraves de su correo",
+    title: "¡Enviado Exitosamente!",
+    text: "¡Se le contactara atraves de su correo!",
     icon: "success",
     timer: 4000,
   });
@@ -16,6 +16,7 @@ const alert = () => {
 export const App = () => {
   const {
     register,
+    reset,
     formState: { errors },
     handleSubmit,
   } = useForm();
@@ -31,6 +32,7 @@ export const App = () => {
       .then((response) => {
         console.log(response);
         response.status === 200 && alert();
+        response.status === 200 && reset();
       })
       .catch((error) => console.log(error));
   };
@@ -38,12 +40,16 @@ export const App = () => {
   return (
     <div className={styles.contenedor}>
       <div
-        className="card mb-3 shadow-lg border-2 border"
-        style={{ maxWidth: "900px" }}
+        className="card my-4 mx-5 shadow-lg"
+        style={{ minWidth: "900px" }}
       >
-        <div className="row g-0">
+        <div className="row g-0 ">
           <div className="col-md-4">
-            <img src={imagen} className="img-fluid rounded-start h-100" />
+            <img
+              src={imagen}
+              alt="gato"
+              className="w-100 img-fluid rounded-start h-100"
+            />
           </div>
 
           <div className="col-md-8 px-4">
@@ -55,6 +61,7 @@ export const App = () => {
                     type="text"
                     className="form-control"
                     placeholder="Nombres"
+                    autoFocus
                     {...register("name", {
                       required: true,
                       minLength: 2,
@@ -131,7 +138,7 @@ export const App = () => {
                   <label>Mensajes</label>
                 </div>
                 <div className="d-flex justify-content-end my-3">
-                  <button type="submit" className="btn btn-dark">
+                  <button type="submit" className="btn btn-primary">
                     Enviar Mensaje
                   </button>
                 </div>
