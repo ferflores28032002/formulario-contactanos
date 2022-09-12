@@ -1,11 +1,19 @@
 import styles from "./App.module.css";
 import emailjs from "@emailjs/browser";
-import { useState } from "react";
 import imagen from "./imagenes/gato.jpeg";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+
+const alert = () => {
+  Swal.fire({
+    title: "El Correo ha sido enviado exitosamente!",
+    text: "Se le contactara atraves de su correo",
+    icon: "success",
+    timer: 4000,
+  });
+};
 
 export const App = () => {
-  const [message, setmessage] = useState(0);
   const {
     register,
     formState: { errors },
@@ -21,7 +29,8 @@ export const App = () => {
         "SVvS_0wxxAsmWl7uC" //Api_key
       )
       .then((response) => {
-        setmessage(response.status);
+        console.log(response);
+        response.status === 200 && alert();
       })
       .catch((error) => console.log(error));
   };
