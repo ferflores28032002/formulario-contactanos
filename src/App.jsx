@@ -40,15 +40,15 @@ export const App = () => {
   return (
     <div className={styles.contenedor}>
       <div
-        className="card my-4 mx-5 shadow-lg"
-        style={{ minWidth: "900px" }}
+        className="card my-4 mx-1 shadow-lg"
+        style={{ maxWidth: "900px" }}
       >
         <div className="row g-0 ">
           <div className="col-md-4">
             <img
               src={imagen}
               alt="gato"
-              className="w-100 img-fluid rounded-start h-100"
+              className="img-fluid rounded-start h-100"
             />
           </div>
 
